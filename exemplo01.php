@@ -70,5 +70,31 @@
     $cal1->subtrair();
     $cal1->multiplicar();
     $cal1->dividir();
+
+    class CalculadoraCientifica extends Calculadora{
+        
+        private $pi;
+    
+    public function __construct ($num1, $num2){
+        parent::__construct($num1, $num2);
+        $this->setpi();
+    }
+
+
+
+        public function setpi(){
+            $this->pi=3.14;
+        }
+
+        public function getpi(){
+            return $this->pi;
+        }        
+    
+
+    }
+
+
 ?>
-<br><br><a href="./exec/exec.php"> atv </a>
+
+
+<br><br><a href="./exercicios/exec.php"> ATV 1</a>
