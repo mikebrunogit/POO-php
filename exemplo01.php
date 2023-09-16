@@ -57,6 +57,48 @@
     }
 
     }//acaba a classe Calculadora
+    
+    class CalculadoraCientifica extends Calculadora{
+     
+        private $pi;
+    
+    public function __construct ($num1, $num2){
+        parent::__construct($num1, $num2);
+         parent::setnum1($num1);
+        $this->setpi();
+        $this->fatorial($num1);
+    }
+
+
+
+        public function setpi(){
+            $this->pi=3.14;
+        }
+
+        public function getpi(){
+            return $this->pi;
+        }//fim da classe filha       
+    
+    public function fatorial($num1){
+
+    $resultado = 0;
+
+      if ($this->num1 >= 0) {
+            $resultado = 1;
+            
+            for ($i = 2; $i <= $this->num1; $i++) {
+                $resultado *= $i;
+            }
+            
+            echo "É: $resultado <br>";
+        } else {
+            echo "Por favor, digite um número inteiro não negativo. <br>";
+        }
+
+
+    } 
+
+    }
 
     $cal1 = new Calculadora(11, 10);
     //$cal1->num1=89;
@@ -70,29 +112,9 @@
     $cal1->subtrair();
     $cal1->multiplicar();
     $cal1->dividir();
-
-    class CalculadoraCientifica extends Calculadora{
-        
-        private $pi;
-    
-    public function __construct ($num1, $num2){
-        parent::__construct($num1, $num2);
-        $this->setpi();
-    }
-
-
-
-        public function setpi(){
-            $this->pi=3.14;
-        }
-
-        public function getpi(){
-            return $this->pi;
-        }        
-    
-
-    }
-
+    $calcientific1 = new CalculadoraCientifica(2, 3);
+    echo ('<br>'.$calcientific1 ->getpi().'<br>');
+    echo ('<br>'.$calcientific1 ->fatorial());
 
 ?>
 
