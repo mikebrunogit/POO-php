@@ -60,46 +60,46 @@
     
     class CalculadoraCientifica extends Calculadora{
      
-        private $pi;
+    private $pi;
     
     public function __construct ($num1, $num2){
         parent::__construct($num1, $num2);
-         parent::setnum1($num1);
         $this->setpi();
-        $this->fatorial($num1);
+      //  $this->fatorial();
     }
 
-
-
-        public function setpi(){
+    public function setpi(){
             $this->pi=3.14;
         }
 
-        public function getpi(){
+    public function getpi(){
             return $this->pi;
         }//fim da classe filha       
     
-    public function fatorial($num1){
+    
+    public function fatorial($n){
+ 
+      
+echo "$n! = ";
 
-    $resultado = 0;
+$resultado = 1;
 
-      if ($this->num1 >= 0) {
-            $resultado = 1;
+for ($i = $n; $i >= 1; $i--) {
+    $resultado *= $i;
+    echo $i;
+    if ($i > 1) {
+        echo " * ";
+    }
+}
+
+echo " = $resultado";
             
-            for ($i = 2; $i <= $this->num1; $i++) {
-                $resultado *= $i;
-            }
-            
-            echo "É: $resultado <br>";
-        } else {
-            echo "Por favor, digite um número inteiro não negativo. <br>";
-        }
-
-
-    } 
 
     }
 
+    }
+
+    echo ("<h4>Objeto e Métodos da classe Calculadora</h4>");
     $cal1 = new Calculadora(11, 10);
     //$cal1->num1=89;
     //$cal1->setnum1(2);
@@ -112,11 +112,12 @@
     $cal1->subtrair();
     $cal1->multiplicar();
     $cal1->dividir();
-    $calcientific1 = new CalculadoraCientifica(2, 3);
-    echo ('<br>'.$calcientific1 ->getpi().'<br>');
-    echo ('<br>'.$calcientific1 ->fatorial());
+    echo ("<HR><h4>Objeto e Métodos da classe CalculadoraCientifica</h4>");
+    $calcientific1 = new CalculadoraCientifica(25, 10);
+    echo ('<br><strong>Atributo com valor de pi - </strong>'.$calcientific1->getpi().'<br>');
+    echo ('<strong>Fatoração  (com paramêtros de função)- </strong>');
+    echo ($calcientific1->fatorial(5));
 
 ?>
 
-
-<br><br><a href="./exercicios/exec.php"> ATV 1</a>
+<br><br><a href="./exec/exec.php">Atividade 1</a>
