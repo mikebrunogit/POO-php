@@ -40,19 +40,22 @@ $date = date('Y-m-d');
 $nameImagen= "";
 
 
-
+/* Consulta no banco de dados, na tabela usuário. Caso o usuário já esteja cadastro, o código retornará o email ao usuário já cadastrado*/
 $consulta = $conexao->query("SELECT * FROM tab_user WHERE email='$recebe_email'");
 
-
+/* codigo que, de acordo com a consulta, cadastrará ou não o usuário*/
 if ($consulta->rowCount()==0) {
 
         //Foto
     if(!empty($fotobase64)){
         // Md5 = cripitografa essa hora
+        
         //times = hora atual (é um valor numérico em segundos entre a hora atual e o valor em 1º de janeiro de 1970 00:00:00 Horário de Greenwich)
         $nameImagen= md5(time());
+        //Include do arquivo para upload da foto no banco de dados
         include 'uploadPhoto.php';
     }
+    //inseri todas as informações/dados usadas (ou não) até momento 
     $inserir = $conexao->query("INSERT INTO tab_user (dataCadastro, email, senha, nome, sobrenome, telefone, sexo, nasc, cep, endereco, numero, complemento, bairro, cidade, imagem, receitaTotal) 
     VALUES ('$date', '$recebe_email', '$recebe_senha', '$recebe_nome', '$recebe_sobreNome', '$recebe_telefone', '$recebe_sexo', '$recebe_nasc', 
     '$recebe_cep', '$recebe_endereco', '$recebe_numero', '$recebe_complemento', '$recebe_bairro', '$recebe_cidade', '$nameImagen', 0)");
