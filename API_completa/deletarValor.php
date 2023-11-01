@@ -10,7 +10,7 @@ header('Content-Type: application/json; charset=utf-8, text/plain ');
 
 include 'conexao.php';
 
-
+//vai pegar o conteudo do arquivo de entrada e colocar na variavel dados
 $dados = file_get_contents('php://input');
 
 $array = json_decode($dados);
@@ -21,7 +21,7 @@ $recebe_receita = $array  ->receita;
 
 if($recebe_id_valor!=''){
  $conexao->query("DELETE FROM tab_valor WHERE id = $recebe_id_valor");
- $resposta = array('Resp' => '1');
+ $resposta = array('Resp' => '1'); //caso tenha recebido algum dado que seja diferente de vazio ele deleta e retorna 1 para o aplicativo caso não tenha recebido ele não faz nada.
 }
 
 ob_clean();
