@@ -11,8 +11,11 @@ header('Content-Type: application/json; charset=utf-8, text/plain ');
 include 'conexao.php';
 
 
+//pega dados através do método 
 $dados = file_get_contents('php://input');
 
+
+//variavel que contem os dados do arquivo em json de forma legivel para o php
 $array = json_decode($dados);
 $recebe_id_user =  $array  ->id_user;
 $recebe_nome = $array  ->nome;
@@ -29,9 +32,7 @@ $recebe_cidade = $array  ->cidade;
 $fotobase64 = $array  ->foto;
 $nameImagen = $array  ->nomefoto;
                              
-
-
-//$update=$conexao->query("UPDATE usuario SET nome=$recebe_nome WHERE email=$recebe_email");
+// parte responsavel por atualizar os dados do usuário no banco de dados
 $update= $conexao->query("UPDATE  tab_user SET 
                                 nome='$recebe_nome',
                                 sobrenome='$recebe_user',
@@ -50,9 +51,14 @@ $update= $conexao->query("UPDATE  tab_user SET
 
 
 
+ 
+
+// caso o usuário não tenha foto de perfil, este include mostrara o caminho para o ususário inserir foto de perfil  
     if(!empty($fotobase64)){
       include 'uploadPhoto.php';
     }
+
+    //exibe as informações já atualizadas do usuário
     $consulta = $conexao->query("SELECT * FROM tab_user WHERE idUser='$recebe_id_user'");
     $exibe=$consulta->fetch(PDO::FETCH_ASSOC);
     $resposta = array('Resp'=> '1',
